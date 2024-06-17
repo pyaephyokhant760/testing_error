@@ -5,7 +5,7 @@ namespace Tests\Feature;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
     /**
      * A basic test example.
@@ -15,5 +15,15 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    /**
+     * A basic test example.
+     */
+    public function test_if_user_with_specific_emial_in_database(): void
+    {
+        $response = $this->post('/api/register');
+
+        dd($response);
     }
 }

@@ -5,9 +5,19 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        User::factory(10)->create();
+    }
+
+
+
     /**
      * A basic test example.
      *
@@ -26,7 +36,7 @@ class ExampleTest extends TestCase
      */
     public function test_check_if_users_getting_fetched_with_id(): void
     {
-        User::factory(10)->create();
+
 
         $user = User::get();
         // dd($user->toArray());
@@ -46,9 +56,9 @@ class ExampleTest extends TestCase
         User::factory(1)->create(
             ["name" => "Pyae Phyo Khant"]
         );
-        User::factory(10)->create();
+
         $user = User::get();
-        // $userSingle = User::where('name','Pyae Phyo Khant')->get();
+        $userSingle = User::where('name','Pyae Phyo Khant')->get();
 
         $this->assertEquals(11 , count($user));
 
@@ -56,6 +66,6 @@ class ExampleTest extends TestCase
             return $item->name == "Pyae Phyo Khant";
         }));
 
-    //    $this->assertObjectHasProperty('name',$user[0]);
+    //    $this->assertObjectHasProperty("name" ,$userSingle[0]);
     }
 }
