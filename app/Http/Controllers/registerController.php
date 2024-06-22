@@ -21,5 +21,10 @@ class registerController extends Controller
         ]);
     }
 
+    public function get_users_under_age()
+    {
+        return User::where('age','<',18)->get();
+    }
+
 
 }

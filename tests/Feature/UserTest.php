@@ -10,6 +10,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        User::factory(100)->create();
+    }
     /**
      * A basic test example.
      */
@@ -25,16 +32,21 @@ class UserTest extends TestCase
      */
     public function test_if_user_with_specific_email_in_database(): void
     {
-        $email = 'test@example.com';
-        $response = $this->post('/api/register', [
-            'name' => 'Test User',
-            'email' => $email,
-            'password' => 'password',
-            'password_confirmation' => 'password'
-        ]);
+        $response = $this->post('/api/register');
 
-        $user = User::where('email', $email)->first();
+        dd($response);
+    }
 
+    /**
+     * check_if_we_have_under_age_clients.
+     *
+     * @test
+     */
+    public function check_if_we_have_under_age_clients(): void
+    {
+        $response = $this->get('/api/get_users_under_age');
+
+        dd($response);
     }
 
 }
