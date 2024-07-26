@@ -44,9 +44,9 @@ class UserTest extends TestCase
      */
     public function check_if_we_have_under_age_clients(): void
     {
-        $response = $this->get('/api/get_users_under_age');
+        $response = $this->get('/get_users_under_age');
 
-        dd($response);
+        $this->assertGreaterThan(1,count($response->json()));
     }
 
 }
